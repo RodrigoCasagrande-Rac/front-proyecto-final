@@ -1,27 +1,22 @@
-import { Container, Row, Col } from "react-bootstrap";
-import "./App.css";
-import NavbarC from "./components/NavbarC";
-import CardC from "./components/CardC";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/pages/HomePages";
+import NavbarC from "./components/navbar/NavbarC";
+import Footer from "./components/footer/Footer";
+import PageError from "./components/pages/PageError";
+import GaleryProducts from "./components/pages/GaleryProducts";
 
 const App = () => {
   return (
     <>
-      <NavbarC />
-      <Container>
-        <Row>
-          <Col sm="12" md="6" lg="4">
-            <CardC />
-          </Col>
-          <Col sm="12" md="6" lg="4">
-            <CardC />
-          </Col>
-          <Col sm="12" md="6" lg="4">
-            <CardC />
-          </Col>
-        </Row>
-      </Container>
-      <Footer />
+      <Router>
+        <NavbarC />
+        <Routes>
+          <Route path="/galeria-productos/:id" element={<GaleryProducts />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<PageError />} />
+        </Routes>
+        <Footer />
+      </Router>
     </>
   );
 };
